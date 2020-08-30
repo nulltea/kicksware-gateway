@@ -1,0 +1,6 @@
+tls:
+  certificates:
+    - certFile: /keys/client.crt
+      keyFile: /keys/client.key
+      stores:
+        - default
