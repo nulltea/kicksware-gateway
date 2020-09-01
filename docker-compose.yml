@@ -11,9 +11,7 @@ services:
     ports:
       - 80:80
       - 443:443
-      # - 4000:4000
-    networks:
-      - web
+    network_mode: host
     volumes:
       - type: bind
         source: /${SOURCE_DIR}/proxy-service/traefik.yaml

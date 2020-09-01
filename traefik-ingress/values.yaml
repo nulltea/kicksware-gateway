@@ -60,7 +60,7 @@ volumes:
     type: Directory
   - name: dynamic
     hostPathBase: *sourceDir
-    hostPath: /proxy-service/dynamic-config
+    hostPath: /gateway/dynamic-config
     mountPath: &dynamic-mount /dynamic-config
     type: Directory
 
