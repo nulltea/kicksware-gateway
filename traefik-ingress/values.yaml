@@ -2,6 +2,7 @@ project: kicksware
 component: proxy
 nameOverride: ""
 fullnameOverride: ""
+baseDirL: &baseDir /run/desktop/mnt/host/wsl
 sourceDir: &sourceDir /run/desktop/mnt/host/wsl/source/repos/kicksware-platform
 
 replicaCount: 1
@@ -49,12 +50,12 @@ log:
 
 volumes:
   - name: cert
-    hostPathBase: /run/desktop/mnt/host/wsl
+    hostPathBase: *baseDir
     hostPath: /source/cert
     mountPath: /cert
     type: Directory
   - name: keys
-    hostPathBase: /run/desktop/mnt/host/wsl
+    hostPathBase: *baseDir
     hostPath: /source/keys
     mountPath: /keys
     type: Directory

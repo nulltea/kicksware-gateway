@@ -30,6 +30,7 @@ spec:
     domains:
       {{- toYaml . | nindent 4 }}
     {{- end }}
+    secretName: tls
   {{- end }}
 ---
 {{- if .Values.ingress.tls.enabled }}
@@ -49,9 +50,10 @@ spec:
       services:
         {{- range .services }}
         - name: {{ .name }}
+          kind: {{ .kind }}
           port: {{ .port }}
           scheme: {{ .scheme }}
-      {{- end }}
+        {{- end }}
       middlewares:
         - name: https-redirect
   {{- end }}

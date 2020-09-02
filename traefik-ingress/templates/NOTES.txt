@@ -1,5 +1,5 @@
 This is {{ .Values.component }} of {{ .Values.project }} application project.
-From outside the cluster, the {{ .Values.component }} microservice is available on ports:
+From outside the cluster, the {{ .Values.component }} service is available on ports:
  - :{{ .Values.service.port }}
  - :{{ .Values.service.securePort }}
  - :{{ .Values.service.adminPort }}
