@@ -2,8 +2,8 @@ project: kicksware
 component: proxy
 nameOverride: ""
 fullnameOverride: ""
-baseDirL: &baseDir /source
-sourceDir: &sourceDir /source/repos/kicksware-platform
+baseDirL: &baseDir /run/desktop/mnt/host/wsl
+sourceDir: &sourceDir /run/desktop/mnt/host/wsl/source/repos/kicksware-platform
 
 replicaCount: 1
 image:
@@ -52,26 +52,26 @@ log:
   accesslog: true
 
 volumes:
-#  - name: cert
-#    hostPathBase: *baseDir
-#    hostPath: /cert
-#    mountPath: /cert
-#    type: Directory
-#  - name: keys
-#    hostPathBase: *baseDir
-#    hostPath: /keys
-#    mountPath: /keys
-#    type: Directory
-#  - name: dynamic
-#    hostPathBase: *sourceDir
-#    hostPath: /gateway/dynamic-config
-#    mountPath: &dynamic-mount /dynamic-config
-#    type: Directory
+  - name: cert
+    hostPathBase: *baseDir
+    hostPath: /source/cert
+    mountPath: /cert
+    type: Directory
+  - name: keys
+    hostPathBase: *baseDir
+    hostPath: /source/keys
+    mountPath: /keys
+    type: Directory
+  - name: dynamic
+    hostPathBase: *sourceDir
+    hostPath: /gateway/dynamic-config
+    mountPath: &dynamic-mount /dynamic-config
+    type: Directory
 
 providers:
   file:
-    enabled: false
-    directory: /source/dynamic-config
+    enabled: true
+    directory: *dynamic-mount
     watch: true
   kubernetescrd:
     enabled: true
@@ -81,7 +81,7 @@ providers:
 acme:
   enabled: true
   email: timothy@kicksware.com
-  storage: /source/cert/acme.json
+  storage: /cert/acme.json
   dnsChallenge:
     enabled: true
     provider: digitalocean
@@ -90,7 +90,7 @@ acme:
 
 serverTransport:
   rootCAs:
-    - /source/keys/server.crt
+    - /keys/server.crt
   insecureSkipVerify: false
 
 resources: {}

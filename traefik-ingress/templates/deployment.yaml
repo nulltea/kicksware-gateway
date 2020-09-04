@@ -33,6 +33,10 @@ spec:
               containerPort: {{ .Values.service.securePort }}
             - name: admin
               containerPort: {{ .Values.service.adminPort }}
+            {{- range .Values.service.addtPorts }}
+            - name: {{ .name }}
+              containerPort: {{ .port }}
+            {{- end }}
           args:
             - --api
             - --api.insecure={{ .Values.api.insecure }}
@@ -49,6 +53,9 @@ spec:
             - '--entryPoints.web.address=:{{ .Values.service.port}}'
             - '--entryPoints.websecure.address=:{{ .Values.service.securePort}}'
             - '--entryPoints.traefik.address=:{{ .Values.service.adminPort}}'
+            {{- range .Values.service.addtPorts }}
+            - '--entryPoints.{{ .name }}.address=:{{ .port }}'
+            {{- end }}
             {{- if .Values.acme.enabled }}
             - --certificatesResolvers.le.acme.email={{ .Values.acme.email}}
             - --certificatesResolvers.le.acme.storage={{ .Values.acme.storage}}
@@ -65,6 +72,8 @@ spec:
             {{- end }}
             - --accesslog={{ .Values.log.accesslog }}
           volumeMounts:
+            - name: data
+              mountPath: /source
           {{- range .Values.volumes }}
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
@@ -83,6 +92,9 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ template "chart.fullname" . }}.nfs-claim
         {{- range .Values.volumes }}
         - name: {{ .name }}
           {{- if .hostPath }}

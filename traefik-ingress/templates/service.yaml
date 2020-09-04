@@ -21,3 +21,9 @@ spec:
       port: {{ .Values.service.adminPort }}
       targetPort: admin
       protocol: TCP
+  {{- range .Values.service.addtPorts }}
+    - name: {{ .name }}
+      port: {{ .port }}
+      targetPort: {{ .name }}
+      protocol: TCP
+  {{- end }}

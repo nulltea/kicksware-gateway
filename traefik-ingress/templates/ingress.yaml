@@ -30,7 +30,6 @@ spec:
     domains:
       {{- toYaml . | nindent 4 }}
     {{- end }}
-    secretName: tls
   {{- end }}
 ---
 {{- if .Values.ingress.tls.enabled }}
