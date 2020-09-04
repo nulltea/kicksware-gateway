@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.7'
 services:
   traefik:
     container_name: traefik
@@ -14,9 +14,9 @@ services:
     network_mode: host
     volumes:
       - type: bind
-        source: /${SOURCE_DIR}/proxy-service/traefik.yaml
+        source: ${SOURCE_DIR}/proxy-service/traefik.yaml
         target: /traefik.yaml
-      - /${SOURCE_DIR}/proxy-service/dynamic-config:/dynamic-config
+      - ${SOURCE_DIR}/proxy-service/dynamic-config:/dynamic-config
       - /source/keys:/keys
       - /source/cert:/cert
       - /var/run/docker.sock:/var/run/docker.sock
