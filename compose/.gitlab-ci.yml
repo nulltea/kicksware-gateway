@@ -1,0 +1,19 @@
+stages:
+  - deploy
+
+deploy.tool-stack:
+  image:
+    name: docker/compose:1.25.0
+  services:
+    - docker:stable-dind
+  stage: deploy
+  tags:
+    - compose
+    - gateway
+  before_script:
+    - cp -r /builds/root/* /source/repos/
+    - apk add make
+  except:
+    kubernetes: active
+  script:
+    - make gateway

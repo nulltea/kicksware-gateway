@@ -1,11 +1,16 @@
+{{- range .Values.volumes }}
+  {{- with .persistent }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ template "chart.fullname" . }}.nfs-claim
+  name: {{ .claim }}
 spec:
-  storageClassName: nfs
+  storageClassName: {{ .storageClass }}
   accessModes:
-    - ReadWriteOnce
+  {{- toYaml .accessModes | nindent 4 }}
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .size }}
+---
+  {{- end }}
+{{- end }}

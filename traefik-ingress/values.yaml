@@ -29,9 +29,10 @@ ingress:
     - host: proxy.kicksware.com
       paths:
         - /
-      middlewares: []
+      middlewares: [ ]
       services:
         - name: api@internal
+          namespace: default
           kind: TraefikService
           port: 8080
           scheme: http
@@ -52,21 +53,14 @@ log:
   accesslog: true
 
 volumes:
-#  - name: cert
-#    hostPathBase: *baseDir
-#    hostPath: /cert
-#    mountPath: /cert
-#    type: Directory
-#  - name: keys
-#    hostPathBase: *baseDir
-#    hostPath: /keys
-#    mountPath: /keys
-#    type: Directory
-#  - name: dynamic
-#    hostPathBase: *sourceDir
-#    hostPath: /gateway/dynamic-config
-#    mountPath: &dynamic-mount /dynamic-config
-#    type: Directory
+  - name: certs
+    persistent:
+      claim: mongodb.certs-claim
+      storageClass: nfs
+      size: 100Mi
+      accessModes:
+        - ReadWriteOnce
+    mountPath: /source/certs
 
 providers:
   file:
@@ -81,7 +75,7 @@ providers:
 acme:
   enabled: true
   email: timothy@kicksware.com
-  storage: /source/cert/acme.json
+  storage: /source/certs/acme.json
   dnsChallenge:
     enabled: true
     provider: digitalocean

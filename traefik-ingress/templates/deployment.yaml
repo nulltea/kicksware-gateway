@@ -72,8 +72,6 @@ spec:
             {{- end }}
             - --accesslog={{ .Values.log.accesslog }}
           volumeMounts:
-            - name: data
-              mountPath: /source
           {{- range .Values.volumes }}
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
@@ -92,14 +90,16 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ template "chart.fullname" . }}.nfs-claim
-        {{- range .Values.volumes }}
+      {{- range .Values.volumes }}
         - name: {{ .name }}
-          {{- if .hostPath }}
+        {{- with .host }}
           hostPath:
-            path: {{ .hostPathBase }}{{ .hostPath }}
+            path: {{ .pathBase }}{{ .path }}
             type: {{ .type }}
-          {{- end }}
         {{- end }}
+        {{- with .persistent }}
+          persistentVolumeClaim:
+            claimName: {{ .claim }}
+        {{- end }}
+      {{- end }}
+
