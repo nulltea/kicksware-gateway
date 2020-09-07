@@ -1,5 +1,4 @@
 gateway:
-	docker-compose down;
 	docker-compose build;
-	docker-compose push gateway
+	docker-compose down;
 	docker-compose up -d;

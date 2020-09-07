@@ -1,24 +1,21 @@
-include: /compose/.gitlab-ci.yml
+include: /.gitlab/.gitlab-ci.compose.yml
 
 image: dtzar/helm-kubectl:3.3.0
 
 stages:
   - deploy
 
-variables:
-  SOURCE_DIR: /source/repos/$CI_PROJECT_NAME
-
 # deploy stage steps:
 
-deploy-proxy-step:
-    stage: deploy
-    tags:
-      - k8s
-      - gateway
-    only:
-      kubernetes: active
-    except:
-      changes:
-        - "*.md"
-    script:
-      - helm upgrade --install -n gateway traefik-ingress traefik-ingress/
+gateway.deploy.k8s:
+  stage: deploy
+  tags:
+    - k8s
+    - gateway
+  only:
+    kubernetes: active
+  except:
+    changes:
+      - "*.md"
+  script:
+    - helm upgrade --install -n gateway traefik-ingress traefik-ingress/
