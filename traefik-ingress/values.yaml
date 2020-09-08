@@ -29,7 +29,8 @@ ingress:
     - host: proxy.kicksware.com
       paths:
         - /
-      middlewares: [ ]
+      middlewares:
+        - name: traefik-auth
       services:
         - name: api@internal
           namespace: default
@@ -49,13 +50,13 @@ api:
   dashboard: true
 
 log:
-  level: DEBUG
+  level: WARN
   accesslog: true
 
 volumes:
   - name: certs
     persistent:
-      claim: mongodb.certs-claim
+      claim: traefik.certs-claim
       storageClass: nfs
       size: 100Mi
       accessModes:

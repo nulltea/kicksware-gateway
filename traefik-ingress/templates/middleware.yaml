@@ -8,3 +8,20 @@ spec:
     scheme: https
     permanent: true
 ---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-auth
+spec:
+  basicAuth:
+    secret: traefik-auth
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: health-stripprefix
+spec:
+  replacePathRegex:
+    regex: health/(.*?)/
+    replacement: health/
+---
