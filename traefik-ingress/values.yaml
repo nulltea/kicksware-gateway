@@ -56,8 +56,8 @@ log:
 volumes:
   - name: certs
     persistent:
-      claim: traefik.certs-claim
-      storageClass: nfs
+      claim: traefikcertsclaim
+      storageClass: glusterfs
       size: 100Mi
       accessModes:
         - ReadWriteOnce
