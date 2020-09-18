@@ -56,7 +56,7 @@ log:
 volumes:
   - name: certs
     persistent:
-      claim: traefikcertsclaim
+      claim: traefik-certsclaim
       storageClass: glusterfs
       size: 100Mi
       accessModes:

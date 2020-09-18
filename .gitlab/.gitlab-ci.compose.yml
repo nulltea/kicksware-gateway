@@ -13,10 +13,10 @@ gateway.deploy.compose:
   tags:
     - compose
     - gateway
+  except:
+    kubernetes: active
   before_script:
     - cp -r /builds/root/* /source/repos/
     - apk add make
-  except:
-    kubernetes: active
   script:
     - make gateway
