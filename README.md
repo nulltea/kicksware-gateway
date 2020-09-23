@@ -16,11 +16,11 @@
 
 _**Kicksware gateway**_ is a unified cloud-native networking solution that brings modern HTTP\TCP\UDP reverse proxy and load balancer together with Kubernetes ingress controller and Service Mesh  in one simply deployable and configurable project.
 
-For the achievement of all the above goals it actually takes just one piece of software, but what an excellent one though - it's [**Træfik**][traefik] by [**Containous**][containous]!
+For the achievement of all the above goals it actually takes just one piece of software, but what an excellent one though - it's [**Træfik**][traefik] by [**Traefik Labs**][containous]!
 
 ## Usecase
 
-For such complex, distributed, diverse microservice-based software infrastructure like Kicksware it's important to be able to route all traffic from the outside into the internal mesh of numerous microservices as well ensure their efficient inner communication.
+For such complex, distributed, diverse microservice-based software infrastructure like Kicksware it's important to be able to route all traffic from the outside into the internal mesh of numerous microservices as well as ensure their efficient inner communication.
 
 Currently, Kicksware's networking profile has total of 18 subdomains. Almost all of them require a secure TLS connection using auto-signing certificates. However, manage system with this level of complexity isn't as hard as it seems with Traefik.
 
@@ -42,7 +42,7 @@ As for Kubernetes, there're 2 methods of doing this:
 1. By using a native [ingress controller][traefik ingress] with the [corresponding class][k8s ingress class].
 2. Since version 1.16 of Kubernetes alternative and in fact, more flexible way was introduced with [`CustomResourceDefinitions (CRD)`][k8s crd]. Traefik defines its [own kind resources][traefik crd] to configure all three HTTP\TCP\UDP [ingressroutes][traefik ingress], middleware, services, and TLS options.
 
-[![traefik browser][]][Kicksware url]
+[![traefik browser][]][traefik dashboard]
 
 ## Requirements
 
@@ -74,7 +74,15 @@ Kicksware gateway can be deployed using following methods:
 
 ## Wrap Up
 
-So if you're enjoying reading about Traefik implementation in the Kicksware system, consider leaving a star on it's GitHub repository, and while you there do the same to this repo if you please.
+Kicksware gateway solution is designed to solve problems of network management, traffic routing, inner services interaction, and secure connection provisioning.
+
+To handle its primary purpose of acting as a reverse proxy for distributed microservice-based cloud infrastructure open-source Traefik proxy application is used.
+
+Thanks to its simplicity-driven design, intuitive dynamic configuration system, native support for microservices, and overall, extensive feature set, Traefik makes the best possible fit for Kicksware sneaker resale platform!
+
+In case of you enjoying reading about Traefik implementation in the Kicksware system, consider leaving a star on it's GitHub repository, and while you there drop one to this repo too...😉
+
+Thanks for attention!
 
 ## License
 
@@ -107,6 +115,7 @@ Licensed under the [GNU AGPL-3.0][license file].
 [traefik others]: https://docs.traefik.io/providers/overview/
 
 [traefik browser]: https://ci.kicksware.com/kicksware/gateway/-/raw/master/assets/traefik-browser.png
+[traefik dashboard]: https://proxy.kicksware.com
 
 [k8s crd]: https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/
 [k8s ingress class]: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
