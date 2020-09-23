@@ -14,7 +14,13 @@
 
 ## Overview
 
+_**Kicksware gateway**_ is a unified cloud-native networking solution that brings modern HTTP\TCP\UDP reverse proxy and load balancer together with Kubernetes ingress controller and Service Mesh  in one simply deployable and configurable project.
+
+For the achievement of all the above goals it actually takes just one piece of software, but what an excellent one though - it's _[**Traefik**][traefik] by [**Containous**][containous]_!
+
 ## Requirements
+
+
 
 ## Deployment
 
@@ -35,6 +41,9 @@ Licensed under the [GNU AGPL-3.0][license file].
 [kubernetes badge]: https://img.shields.io/badge/DevOps-Kubernetes-informational?style=flat&logo=kubernetes&logoColor=white&color=316DE6
 [gitlab badge]: https://img.shields.io/badge/CI-Gitlab_CE-informational?style=flat&logo=gitlab&logoColor=white&color=FCA326
 [gateway pipeline]: https://ci.kicksware.com/kicksware/gateway/badges/master/pipeline.svg?key_text=Gateway%20|%20pipeline&key_width=115
+
+[traefik]: https://traefik.io/traefik
+[containous]: https://traefik.io/about-us
 
 [docker-desktop]: https://docs.docker.com/desktop/
 [docker-compose]: https://docs.docker.com/compose/
