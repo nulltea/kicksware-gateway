@@ -42,9 +42,11 @@ As for Kubernetes, there're 2 methods of doing this:
 1. By using a native [ingress controller][traefik ingress] with the [corresponding class][k8s ingress class].
 2. Since version 1.16 of Kubernetes alternative and in fact, more flexible way was introduced with [`CustomResourceDefinitions (CRD)`][k8s crd]. Traefik defines its [own kind resources][traefik crd] to configure all three HTTP\TCP\UDP [ingressroutes][traefik ingress], middleware, services, and TLS options.
 
+[![traefik browser][]][Kicksware url]
+
 ## Requirements
 
-As designed Kicksware gateway solution must be deployed at the very beginning.Therefore, in every next deployment Traefik would be already there to dynamically process and expose newly created  services.
+As designed Kicksware gateway solution must be deployed at the very beginning. Therefore, in every next deployment Traefik would be already there to dynamically process and expose newly created services.
 
 ## Deployment
 
@@ -103,6 +105,8 @@ Licensed under the [GNU AGPL-3.0][license file].
 [traefik docker]: https://docs.traefik.io/providers/docker
 [traefik rancher]: https://docs.traefik.io/providers/rancher
 [traefik others]: https://docs.traefik.io/providers/overview/
+
+[traefik browser]: https://ci.kicksware.com/kicksware/gateway/-/raw/master/assets/traefik-browser.png
 
 [k8s crd]: https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/
 [k8s ingress class]: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
