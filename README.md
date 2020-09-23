@@ -16,7 +16,7 @@
 
 _**Kicksware gateway**_ is a unified cloud-native networking solution that brings modern HTTP\TCP\UDP reverse proxy and load balancer together with Kubernetes ingress controller and Service Mesh  in one simply deployable and configurable project.
 
-For the achievement of all the above goals it actually takes just one piece of software, but what an excellent one though - it's _[**Traefik**][traefik] by [**Containous**][containous]_!
+For the achievement of all the above goals it actually takes just one piece of software, but what an excellent one though - it's [**Træfik**][traefik] by [**Containous**][containous]!
 
 ## Requirements
 
