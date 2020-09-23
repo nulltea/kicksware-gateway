@@ -80,7 +80,7 @@ To handle its primary purpose of acting as a reverse proxy for distributed micro
 
 Thanks to its simplicity-driven design, intuitive dynamic configuration system, native support for microservices, and overall, extensive feature set, Traefik makes the best possible fit for Kicksware sneaker resale platform!
 
-In case of you enjoying reading about Traefik implementation in the Kicksware system, consider leaving a star on it's GitHub repository, and while you there drop one to this repo too...😉
+In case of you enjoying reading about Traefik implementation in the Kicksware system, consider leaving a star on it's GitHub repository, and while you there drop one to this repo too.😉
 
 Thanks for attention!
 
