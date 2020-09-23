@@ -18,7 +18,7 @@ _**Kicksware gateway**_ is a unified cloud-native networking solution that bring
 
 For the achievement of all the above goals it actually takes just one piece of software, but what an excellent one though - it's [**Træfik**][traefik] by [**Traefik Labs**][containous]!
 
-## Usecase
+## Use Case
 
 For such complex, distributed, diverse microservice-based software infrastructure like Kicksware it's important to be able to route all traffic from the outside into the internal mesh of numerous microservices as well as ensure their efficient inner communication.
 
