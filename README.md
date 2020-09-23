@@ -18,13 +18,37 @@ _**Kicksware gateway**_ is a unified cloud-native networking solution that bring
 
 For the achievement of all the above goals it actually takes just one piece of software, but what an excellent one though - it's [**Træfik**][traefik] by [**Containous**][containous]!
 
+## Usecase
+
+For such complex, distributed, diverse microservice-based software infrastructure like Kicksware it's important to be able to route all traffic from the outside into the internal mesh of numerous microservices as well ensure their efficient inner communication.
+
+Currently, Kicksware's networking profile has total of 18 subdomains. Almost all of them require a secure TLS connection using auto-signing certificates. However, manage system with this level of complexity isn't as hard as it seems with Traefik.
+
+Reason for this is its _simplicity_ that is achieved by cleverly _hiding a great deal of complexity_. The same as Go (programming language on which its written) Traefik is made with intended simplicity in mind, therefor it's easy to use it. But to achieve this Traefik is actually [handles a lot hidden process][traefik features] from dynamically routing request to their target services, to auto-signing TLS certificates with an ACME provider (like Let’s Encrypt).
+
+## Configuration
+
+However, even such an autonomous program as Traefik needs to be configured to fit into the system it applied to.
+
+Happily, it's not a hard thing to do, all its needed is to define both router endpoint rule and target server, but even this step can be omitted if proxy configuration is bonded directly to service definition, like in `docker-compose` service config or Kubernetes ingress route where only service name is required.
+
+As will be described in further sections Kicksware can be deployed using docker-compose and K8s methods. For both of them Traefik provides efficient way to configure itself.
+
+For [Docker][traefik docker], [Rancher][traefik rancher], and a [few more container orchestration platforms][traefik others] label-based configuration is available.
+As for Kubernetes thare
+
+As for Kubernetes, there're 2 methods of doing this:
+
+1. By using a native [ingress controller][traefik ingress] with the [corresponding class][k8s ingress class].
+2. Since version 1.16 of Kubernetes alternative and in fact, more flexible way was introduced with [`CustomResourceDefinitions (CRD)`][k8s crd]. Traefik defines its [own kind resources][traefik crd] to configure all three HTTP\TCP\UDP [ingressroutes][traefik ingress], middleware, services, and TLS options.
+
 ## Requirements
-
-
 
 ## Deployment
 
 ## Wrap Up
+
+So if you're enjoying reading about Traefik implementation in the Kicksware system, consider leaving a star on it's GitHub repository, and while you there do the same to this repo if you please.
 
 ## License
 
@@ -44,6 +68,7 @@ Licensed under the [GNU AGPL-3.0][license file].
 
 [traefik]: https://traefik.io/traefik
 [containous]: https://traefik.io/about-us
+[traefik features]: https://github.com/traefik/traefik#Features
 
 [docker-desktop]: https://docs.docker.com/desktop/
 [docker-compose]: https://docs.docker.com/compose/
@@ -52,6 +77,16 @@ Licensed under the [GNU AGPL-3.0][license file].
 [ci k8s config]: https://github.com/timoth-y/kicksware-gateway/blob/master/.gitlab-ci.yml
 [k8s crd]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 [ingress route]: https://docs.traefik.io/routing/providers/kubernetes-crd/
+
+[traefik docker]: https://docs.traefik.io/providers/docker
+[traefik rancher]: https://docs.traefik.io/providers/rancher
+[traefik others]: https://docs.traefik.io/providers/overview/
+
+[k8s crd]: https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/
+[k8s ingress class]: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
+[traefik ingress]: https://docs.traefik.io/providers/kubernetes-ingress/
+[traefik crd]: https://docs.traefik.io/reference/dynamic-configuration/kubernetes-crd/
+[traefik ingressroute]: https://docs.traefik.io/providers/kubernetes-crd/
 
 [helm]: https://helm.sh/
 [helm chart]: https://github.com/timoth-y/kicksware-gateway/tree/master/webapp-chart
