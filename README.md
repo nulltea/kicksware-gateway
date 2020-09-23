@@ -44,7 +44,31 @@ As for Kubernetes, there're 2 methods of doing this:
 
 ## Requirements
 
+As designed Kicksware gateway solution must be deployed at the very beginning.Therefore, in every next deployment Traefik would be already there to dynamically process and expose newly created  services.
+
 ## Deployment
+
+Kicksware gateway can be deployed using following methods:
+
+1. **Docker Compose file**
+
+   This method require single dedicated server with installed both [`docker`][docker-compose] and [`docker-compose`][docker-compose] utilities.
+
+   Compose [configuration file][compose config] can be found in root of the project. This file already contains setting for reverse proxy routing and load balancing.
+
+   Gitlab CI deployment pipeline [configuration file][ci compose config] for compose method can be found in `.gitlab` directory.
+
+2. **Kubernetes Helm charts**
+
+   Deployment to Kubernetes cluster is the default and desired way.
+
+   For more flexible and easier deployment [Helm package manager][helm] is used. It provides a simple, yet elegant way to write pre-configured, reusable Kubernetes resources configuration using YAML and Go Templates (or Lua scripts). Helm packages are called `charts`.
+
+   Traefik ingress [deployment chart][helm chart] directory can be found in root of the project.
+
+   Helm chart configuration already contains configuration of [Traefik IngressRoute][traefik ingressroute] [Custom Resource Definition (CRD)][k8s crd] for reverse proxy routing and load balancing.
+
+   Gitlab CI deployment pipeline [configuration file][ci k8s config] for K8s method can be found in the root of the project.
 
 ## Wrap Up
 
@@ -75,8 +99,6 @@ Licensed under the [GNU AGPL-3.0][license file].
 [compose config]: https://github.com/timoth-y/kicksware-gateway/blob/master/docker-compose.yml
 [ci compose config]: https://github.com/timoth-y/kicksware-gateway/blob/master/.gitlab/.gitlab-ci.compose.yml
 [ci k8s config]: https://github.com/timoth-y/kicksware-gateway/blob/master/.gitlab-ci.yml
-[k8s crd]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
-[ingress route]: https://docs.traefik.io/routing/providers/kubernetes-crd/
 
 [traefik docker]: https://docs.traefik.io/providers/docker
 [traefik rancher]: https://docs.traefik.io/providers/rancher
