@@ -4,6 +4,7 @@ image: dtzar/helm-kubectl:3.3.0
 
 stages:
   - deploy
+  - check
 
 # deploy stage steps:
 
@@ -19,3 +20,19 @@ gateway.deploy.k8s:
       - "*.md"
   script:
     - helm upgrade --install -n gateway traefik-ingress traefik-ingress/
+
+# check stage steps:
+
+gateway.check.k8s:
+  image: curlimages/curl
+  stage: check
+  tags:
+    - k8s
+    - web-app
+  before_script:
+    - echo Waiting half a minute for proxy to properly start or fail... && sleep 30s
+  script:
+    - curl "http://$PROXY_ENDPOINT_URL/ping" -f -o /dev/null || exit 1 | echo -e "\e[91mProxy dead! Triggering check job failure"
+    - echo -e "\e[36mProxy is live and ready. ready. Check job succeeded!"
+  dependencies: []
+  retry: 2
