@@ -124,6 +124,6 @@ Licensed under the [GNU AGPL-3.0][license file].
 [traefik ingressroute]: https://docs.traefik.io/providers/kubernetes-crd/
 
 [helm]: https://helm.sh/
-[helm chart]: https://github.com/timoth-y/kicksware-gateway/tree/master/webapp-chart
+[helm chart]: https://github.com/timoth-y/kicksware-gateway/tree/master/traefik-ingress
 
 [license file]: https://github.com/timoth-y/kicksware-gateway/blob/master/LICENSE
