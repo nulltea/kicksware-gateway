@@ -21,6 +21,7 @@ For the achievement of all the above goals it actually takes just one piece of s
 ## Table of contents
 
 * [Overview](#overview)
+* [Table of contents](#table-of-contents)
 * [Use Case](#use-case)
 * [Configuration](#configuration)
 * [Requirements](#requirements)
@@ -45,7 +46,6 @@ Happily, it's not a hard thing to do, all its needed is to define both router en
 As will be described in further sections Kicksware can be deployed using docker-compose and K8s methods. For both of them Traefik provides efficient way to configure itself.
 
 For [Docker][traefik docker], [Rancher][traefik rancher], and a [few more container orchestration platforms][traefik others] label-based configuration is available.
-As for Kubernetes thare
 
 As for Kubernetes, there're 2 methods of doing this:
 
@@ -60,13 +60,13 @@ As designed Kicksware gateway solution must be deployed at the very beginning. T
 
 ## Deployment
 
-Kicksware gateway can be deployed using following methods:
+Kicksware gateway can be deployed using the following methods:
 
 1. **Docker Compose file**
 
    This method require single dedicated server with installed both [`docker`][docker-compose] and [`docker-compose`][docker-compose] utilities.
 
-   Compose [configuration file][compose config] can be found in root of the project. This file already contains setting for reverse proxy routing and load balancing.
+   Compose [configuration file][compose config] can be found in the root of the project. This file already contains setting for reverse proxy routing and load balancing.
 
    Gitlab CI deployment pipeline [configuration file][ci compose config] for compose method can be found in `.gitlab` directory.
 
@@ -74,9 +74,9 @@ Kicksware gateway can be deployed using following methods:
 
    Deployment to Kubernetes cluster is the default and desired way.
 
-   For more flexible and easier deployment [Helm package manager][helm] is used. It provides a simple, yet elegant way to write pre-configured, reusable Kubernetes resources configuration using YAML and Go Templates (or Lua scripts). Helm packages are called `charts`.
+   For more flexible and easier deployment [Helm package manager][helm] is used. It provides a simple, yet elegant way to write pre-configured, reusable Kubernetes resource configuration using YAML and Go Templates (or Lua scripts). Helm packages are called `charts`.
 
-   Traefik ingress [deployment chart][helm chart] directory can be found in root of the project.
+   Traefik ingress [deployment chart][helm chart] directory can be found in the root of the project.
 
    Helm chart configuration already contains configuration of [Traefik IngressRoute][traefik ingressroute] [Custom Resource Definition (CRD)][k8s crd] for reverse proxy routing and load balancing.
 
