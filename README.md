@@ -16,12 +16,11 @@
 
 _**Kicksware gateway**_ is a unified cloud-native networking solution that brings modern HTTP\TCP\UDP reverse proxy and load balancer together with Kubernetes ingress controller and Service Mesh  in one simply deployable and configurable project.
 
-For the achievement of all the above goals it actually takes just one piece of software, but what an excellent one though - it's [**Træfik**][traefik] by [**Traefik Labs**][containous]!
+To achieve all  of the above-mentioned goals it actually takes just one piece of software, but what an excellent one, though - it's [**Træfik**][traefik] by [**Traefik Labs**][containous]!
 
 ## Table of contents
 
 * [Overview](#overview)
-* [Table of contents](#table-of-contents)
 * [Use Case](#use-case)
 * [Configuration](#configuration)
 * [Requirements](#requirements)
@@ -31,32 +30,32 @@ For the achievement of all the above goals it actually takes just one piece of s
 
 ## Use Case
 
-For such complex, distributed, diverse microservice-based software infrastructure like Kicksware it's important to be able to route all traffic from the outside into the internal mesh of numerous microservices as well as ensure their efficient inner communication.
+For such a complex, distributed, diverse microservice-based software infrastructure like Kicksware it's important to be able to route all traffic from the outside into the internal mesh of numerous microservices as well as ensure their efficient inner communication.
 
-Currently, Kicksware's networking profile has total of 18 subdomains. Almost all of them require a secure TLS connection using auto-signing certificates. However, manage system with this level of complexity isn't as hard as it seems with Traefik.
+Currently, Kicksware's networking profile has total of 18 subdomains. Almost all of them require a secure TLS connection, using auto-signing certificates. However, managing the system with this level of complexity isn't as hard as it seems with Traefik.
 
-Reason for this is its _simplicity_ that is achieved by cleverly _hiding a great deal of complexity_. The same as Go (programming language on which its written) Traefik is made with intended simplicity in mind, therefor it's easy to use it. But to achieve this Traefik is actually [handles a lot hidden process][traefik features] from dynamically routing request to their target services, to auto-signing TLS certificates with an ACME provider (like Let’s Encrypt).
+Reason for this is its _simplicity_ achieved by cleverly _hiding a great deal of complexity_. Likewise Go (programming language on which its written), Traefik is made with the intended simplicity in mind, therefore it is easy to use it. However, to achieve this goal Traefik actually [handles a lot of hidden processes][traefik features] ranging from a dynamically routing request to their target services, to auto-signing TLS certificates with an ACME provider (like Let’s Encrypt).
 
 ## Configuration
 
-However, even such an autonomous program as Traefik needs to be configured to fit into the system it applied to.
+However, even such an autonomous program as Traefik needs to be configured to fit into the system it's applied to.
 
-Happily, it's not a hard thing to do, all its needed is to define both router endpoint rule and target server, but even this step can be omitted if proxy configuration is bonded directly to service definition, like in `docker-compose` service config or Kubernetes ingress route where only service name is required.
+Thankfully, it's not a hard thing to do, all thats need is to define both router endpoint rule and target server, but even this step can be omitted if proxy configuration is bonded directly to service definition, like in `docker-compose` service config or Kubernetes ingress route where only service name is required.
 
-As will be described in further sections Kicksware can be deployed using docker-compose and K8s methods. For both of them Traefik provides efficient way to configure itself.
+As it's going to be described in further sections, Kicksware can be deployed using docker-compose and K8s methods. For both of them Traefik provides efficient way to configure itself.
 
 For [Docker][traefik docker], [Rancher][traefik rancher], and a [few more container orchestration platforms][traefik others] label-based configuration is available.
 
-As for Kubernetes, there're 2 methods of doing this:
+As for Kubernetes, there are 2 methods of doing this:
 
 1. By using a native [ingress controller][traefik ingress] with the [corresponding class][k8s ingress class].
-2. Since version 1.16 of Kubernetes alternative and in fact, more flexible way was introduced with [`CustomResourceDefinitions (CRD)`][k8s crd]. Traefik defines its [own kind resources][traefik crd] to configure all three HTTP\TCP\UDP [ingressroutes][traefik ingress], middleware, services, and TLS options.
+2. Since the appearance of version 1.16 of Kubernetes an alternative and in fact, more flexible way was introduced with [`CustomResourceDefinitions (CRD)`][k8s crd]. Traefik defines its [own kind resources][traefik crd] to configure all three HTTP\TCP\UDP [ingressroutes][traefik ingress], middleware, services, and TLS options.
 
 [![traefik browser][]][traefik dashboard]
 
 ## Requirements
 
-As designed Kicksware gateway solution must be deployed at the very beginning. Therefore, in every next deployment Traefik would be already there to dynamically process and expose newly created services.
+As designed Kicksware gateway solution must be deployed at the very beginning. Therefore, in every following deployment Traefik would be already there to dynamically process and expose newly created services.
 
 ## Deployment
 
@@ -86,11 +85,11 @@ Kicksware gateway can be deployed using the following methods:
 
 Kicksware gateway solution is designed to solve problems of network management, traffic routing, inner services interaction, and secure connection provisioning.
 
-To handle its primary purpose of acting as a reverse proxy for distributed microservice-based cloud infrastructure open-source Traefik proxy application is used.
+To handle its primary purpose of acting as a reverse proxy for distributed microservice-based cloud infrastructure the open-source Traefik proxy application is used.
 
-Thanks to its simplicity-driven design, intuitive dynamic configuration system, native support for microservices, and overall, extensive feature set, Traefik makes the best possible fit for Kicksware sneaker resale platform!
+Thanks to its simplicity-driven design, intuitive dynamic configuration system, native support for microservices, and overall extensive feature set, Traefik makes the best possible fit for Kicksware sneaker resale platform!
 
-In case of you enjoying reading about Traefik implementation in the Kicksware system, consider leaving a star on it's GitHub repository, and while you there drop one to this repo too.😉
+If you have enjoyed reading about Traefik implementation in the Kicksware system, consider leaving a star on [it's GitHub repository][traefik repo], and while you're there, drop one for this repo too.😉
 
 Thanks for attention!
 
@@ -113,6 +112,7 @@ Licensed under the [GNU AGPL-3.0][license file].
 [traefik]: https://traefik.io/traefik
 [containous]: https://traefik.io/about-us
 [traefik features]: https://github.com/traefik/traefik#Features
+[traefik repo]: https://github.com/traefik/traefik
 
 [docker-desktop]: https://docs.docker.com/desktop/
 [docker-compose]: https://docs.docker.com/compose/
