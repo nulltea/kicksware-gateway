@@ -71,6 +71,7 @@ spec:
               {{- end }}
             {{- end }}
             - --accesslog={{ .Values.log.accesslog }}
+            - --pilot.token={{ .Values.pilot.token }}
           volumeMounts:
           {{- range .Values.volumes }}
             - name: {{ .name }}

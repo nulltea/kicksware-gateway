@@ -5,11 +5,11 @@ fullnameOverride: ""
 baseDirL: &baseDir /source
 sourceDir: &sourceDir /source/repos/kicksware-platform
 
-replicaCount: 1
+replicaCount: 2
 image:
   repository: traefik
   pullPolicy: IfNotPresent
-  tag: v2.2
+  tag: v2.3
 
 service:
   type: LoadBalancer
@@ -50,15 +50,15 @@ api:
   dashboard: true
 
 log:
-  level: WARN
+  level: INFO
   accesslog: true
 
 volumes:
   - name: certs
     persistent:
       claim: traefik-certsclaim
-      storageClass: glusterfs
-      size: 100Mi
+      storageClass: nfs
+      size: 1Gi
       accessModes:
         - ReadWriteOnce
     mountPath: /source/certs
@@ -72,6 +72,9 @@ providers:
     enabled: true
   kubernetesingress:
     enabled: true
+
+pilot:
+  token: ae4f48c1-de07-4b07-87bd-cca466d22548
 
 acme:
   enabled: true
