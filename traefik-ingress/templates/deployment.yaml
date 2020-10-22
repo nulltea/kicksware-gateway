@@ -77,6 +77,10 @@ spec:
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
           {{- end }}
+          {{- range .Values.secrets.mounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+          {{- end }}
           env:
             - name:  {{ .Values.acme.dnsChallenge.envName}}
               value: {{ .Values.acme.dnsChallenge.token}}
@@ -102,5 +106,10 @@ spec:
           persistentVolumeClaim:
             claimName: {{ .claim }}
         {{- end }}
+      {{- end }}
+      {{- range .Values.secrets.mounts }}
+        - name: {{ .name }}
+          secret:
+            secretName: {{ .name }}
       {{- end }}
 
