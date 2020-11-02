@@ -84,7 +84,7 @@ acme:
     enabled: true
     provider: digitalocean
     envName: DO_AUTH_TOKEN
-    token: 6229b9e18dd51158da31da743bcf36262a11e8075a8ea2847d555cb9a3e47bf4
+    tokenSecret: do-auth-token
 
 
 secrets:
