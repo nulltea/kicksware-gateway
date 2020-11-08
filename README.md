@@ -94,6 +94,9 @@ If you have enjoyed reading about Traefik implementation in the Kicksware system
 
 Thanks for attention!
 
+## More
+See [other Kicksware project repositories][kicksware-main-repo].
+
 ## License
 
 Licensed under the [GNU AGPL-3.0][license file].
@@ -136,5 +139,7 @@ Licensed under the [GNU AGPL-3.0][license file].
 
 [helm]: https://helm.sh/
 [helm chart]: https://github.com/timoth-y/kicksware-gateway/tree/master/traefik-ingress
+
+[kicksware-main-repo]: https://github.com/timoth-y/kicksware-platform#components
 
 [license file]: https://github.com/timoth-y/kicksware-gateway/blob/master/LICENSE
