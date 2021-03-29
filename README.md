@@ -128,7 +128,7 @@ Licensed under the [GNU AGPL-3.0][license file].
 [traefik rancher]: https://docs.traefik.io/providers/rancher
 [traefik others]: https://docs.traefik.io/providers/overview/
 
-[traefik browser]: https://ci.kicksware.com/kicksware/gateway/-/raw/master/assets/traefik-browser.png
+[traefik browser]: https://raw.githubusercontent.com/timoth-y/kicksware-gateway/master/assets/traefik-browser.png
 [traefik dashboard]: https://proxy.kicksware.com
 
 [k8s crd]: https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/
